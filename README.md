@@ -26,3 +26,8 @@ Api地址：http://[example].com/api/[action]，替换[action]为下面列出的
 8. categoryList //参数 ignore, childMode
 9. tagCloud //参数 sort, count, ignoreZeroCount, desc, limit
 10. archive //参数 format, type, limit
+
+---
+# 感谢
+
+https://github.com/lizheming/JSON
