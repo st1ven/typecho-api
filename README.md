@@ -14,6 +14,7 @@
 # 使用方法
 
 Api地址：http://[example].com/api/[action]，替换[action]为下面列出的方法，更多介绍可以看[JSON/Action.php](https://github.com/szj1006/typecho-api/blob/master/JSON/Action.php)中的备注
+
 例如：[https://sangsir.com/api/posts](https://sangsir.com/api/posts)
 
 1. count
