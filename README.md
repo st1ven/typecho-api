@@ -5,7 +5,9 @@
 # 安装方法
 
 下载后将JSON文件夹上传至/usr/plugins文件夹内
+
 登录Typecho博客后台，顶部导航栏-控制台-插件-找到JSON API-启用
+
 大功告成！试试访问 http://[example].com/api/[action] 吧！
 
 ---
