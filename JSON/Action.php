@@ -31,7 +31,7 @@ class JSON_Action extends Typecho_Widget implements Widget_Interface_Do {
         $page     = (int) self::GET('page', 1);
         $authorId = self::GET('authorId', 0);
         $offset   = $pageSize * ($page - 1);
-        $select   = $this->db->select('cid', 'title', 'created', 'type', 'slug', 'text')->from('table.contents')->where('type = ?', 'post')->where('status = ?', 'publish')->where('created < ?', time())->order('table.contents.created', Typecho_Db::SORT_DESC)->offset($offset)->limit($pageSize);
+        $select   = $this->db->select('cid', 'title', 'created', 'type', 'slug', 'text', 'authorId')->from('table.contents')->where('type = ?', 'post')->where('status = ?', 'publish')->where('created < ?', time())->order('table.contents.created', Typecho_Db::SORT_DESC)->offset($offset)->limit($pageSize);
         // 根据cid偏移获取文章
         if (isset($_GET['cid'])) {
             $cid = self::GET('cid');
@@ -74,6 +74,7 @@ class JSON_Action extends Typecho_Widget implements Widget_Interface_Do {
         $result = array();
         foreach ($posts as $post) {
             $post        = $this->widget("Widget_Abstract_Contents")->push($post);
+            $post['author'] = $this->db->fetchAll($this->db->select('uid', 'name', 'mail', 'url', 'screenName')->from('table.users')->where('uid = ?', $post['authorId']));
             $post['tag'] = $this->db->fetchAll($this->db->select('name')->from('table.metas')->join('table.relationships', 'table.metas.mid = table.relationships.mid', Typecho_DB::LEFT_JOIN)->where('table.relationships.cid = ?', $post['cid'])->where('table.metas.type = ?', 'tag'));
             $post['thumb'] = $this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid']))?$this->db->fetchAll($this->db->select('str_value')->from('table.fields')->where('cid = ?', $post['cid'])):array(array("str_value"=>"https://ww4.sinaimg.cn/large/a15b4afegw1f8sqaz6y6bj20go06j0u2"));
             $result[]    = $post;
