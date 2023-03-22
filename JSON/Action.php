@@ -7,7 +7,6 @@ class JSON_Action extends Typecho_Widget implements Widget_Interface_Do {
     public function __construct($request, $response, $params = NULL) {
         parent::__construct($request, $response, $params);
         $this->db  = Typecho_Db::get();
-        $this->res = new Typecho_Response();
         if (method_exists($this, $this->request->type)) {
             call_user_func(array(
                 $this,
@@ -269,7 +268,7 @@ class JSON_Action extends Typecho_Widget implements Widget_Interface_Do {
         $this->export($result);
     }
     public function export($data = array(), $status = 200) {
-        $this->res->throwJson(array(
+        $this->response->throwJson(array(
             'status' => $status,
             'data' => $data
         ));
