@@ -1,5 +1,5 @@
 # typecho-api
-基于Typecho的JSON API插件
+基于Typecho的JSON API插件，支持Typecho v1.2版
 
 ---
 # 安装方法
